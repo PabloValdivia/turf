@@ -42,12 +42,13 @@ function centerMean(geojson, options) {
         var weightValue = properties[weight] || 1;
         if (!isNumber(weightValue)) throw new Error('weight value must be a number for feature index ' + featureIndex);
         weightValue = Number(weightValue);
-        if (weightValue < 0) throw new Error('weight value must be positive for feature index ' + featureIndex);
-        coordEach(geom, function (coord) {
-            sumXs += coord[0] * weightValue;
-            sumYs += coord[1] * weightValue;
-            sumNs += weightValue;
-        });
+        if (weightValue > 0) {
+            coordEach(geom, function (coord) {
+                sumXs += coord[0] * weightValue;
+                sumYs += coord[1] * weightValue;
+                sumNs += weightValue;
+            });
+        }
     });
     // if (sumNs) sumNs = 1;
     if (sumNs === 0) throw new Error('sum of weights equals zero');
