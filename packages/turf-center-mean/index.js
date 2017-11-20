@@ -50,8 +50,6 @@ function centerMean(geojson, options) {
             });
         }
     });
-    // if (sumNs) sumNs = 1;
-    if (sumNs === 0) throw new Error('sum of weights equals zero');
     return point([sumXs / sumNs, sumYs / sumNs], properties);
 }
 
